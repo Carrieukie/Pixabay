@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.watching.WatchingFragment">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,48 +45,31 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/text_view_image_user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/image_view_image"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:drawablePadding="4dp"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:textColor="#fff"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="By Josch13" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-
-        <TextView
-            android:id="@+id/textView_imageUser"
-            android:layout_width="0dp"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_tags"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="By Karis"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:transitionName="image"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:text="TextView"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_margin="5dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_imageUser">
+            app:layout_constraintTop_toBottomOf="@+id/textView_tags">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -94,10 +77,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:padding="10dp"
+                android:weightSum="4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -110,14 +91,15 @@
                         android:id="@+id/imageView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/views" />
+                        app:srcCompat="@drawable/ic_views" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_numViews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="10k views" />
+                        android:fontFamily="sans-serif"
+                        tools:text="10k views" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,14 +112,15 @@
                         android:id="@+id/imageView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/thumb_up" />
+                        app:srcCompat="@drawable/ic_thumb_up" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/textView_numlikes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="10 likes" />
+                        android:fontFamily="sans-serif"
+                        tools:text="10 likes" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,14 +133,14 @@
                         android:id="@+id/imageView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/thumb_down" />
+                        app:srcCompat="@drawable/ic_downloads" />
 
-                    <TextView
-                        android:id="@+id/textView_numdislikes"
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textView_numdownloads"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="10 dislikes" />
+                        tools:text="10 downloads" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,20 +153,69 @@
                         android:id="@+id/share_intent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_share" />
+                        app:srcCompat="@drawable/ic_comments" />
 
-                    <TextView
-                        android:id="@+id/textView_share"
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/textView_numcomments"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Share" />
+                        tools:text="Comments" />
                 </LinearLayout>
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="10dp">
 
+                <ImageView
+                    android:id="@+id/imageView_imageUser"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_imageUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    tools:text="By Karis"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:transitionName="image"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_imageUser"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_imageUser"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_imageUser" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_Pageurl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    tools:text="page Url : https://pixabay.com/en/blossom-bloom-flower-195893/"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_imageUser"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_imageUser" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
