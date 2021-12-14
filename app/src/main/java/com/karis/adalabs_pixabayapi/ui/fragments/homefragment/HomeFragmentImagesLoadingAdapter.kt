@@ -8,7 +8,7 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.karis.adalabs_pixabayapi.databinding.NetworkStateItemBinding
 
-class ImagesLoadingAdapter(private val retry: () -> Unit) : LoadStateAdapter<ImagesLoadingAdapter.LoadStateViewHolder>() {
+class HomeFragmentImagesLoadingAdapter(private val retry: () -> Unit) : LoadStateAdapter<HomeFragmentImagesLoadingAdapter.LoadStateViewHolder>() {
 
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
 

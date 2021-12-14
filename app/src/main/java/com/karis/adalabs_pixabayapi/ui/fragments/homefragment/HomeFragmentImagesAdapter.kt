@@ -10,8 +10,8 @@ import com.karis.adalabs_pixabayapi.commons.loadImage
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.databinding.AdapterItemBinding
 
-class ImagesAdapter(private val clicked: (HitsItem) -> Unit) :
-    PagingDataAdapter<HitsItem, ImagesAdapter.ImagesViewHolder>(
+class HomeFragmentImagesAdapter(private val clicked: (HitsItem) -> Unit) :
+    PagingDataAdapter<HitsItem, HomeFragmentImagesAdapter.ImagesViewHolder>(
         ImagesDiffCallback()
     ) {
 

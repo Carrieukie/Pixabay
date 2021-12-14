@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,7 +24,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
-    private val adapter = ImagesAdapter { imageItem: HitsItem -> imageclicked(imageItem) }
+    private val adapter = HomeFragmentImagesAdapter { imageItem: HitsItem -> imageclicked(imageItem) }
     private var searchJob: Job? = null
 
     @ExperimentalPagingApi
@@ -69,7 +68,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.allProductRecyclerView.adapter = adapter.withLoadStateFooter(
-            footer = ImagesLoadingAdapter { retry() }
+            footer = HomeFragmentImagesLoadingAdapter { retry() }
         )
 
         adapter.addLoadStateListener { loadState ->
@@ -86,8 +85,11 @@ class HomeFragment : Fragment() {
                 binding.swipeRefreshLayout.isRefreshing = false
 
                 val error = when {
+
                     loadState.mediator?.prepend is LoadState.Error -> loadState.mediator?.prepend as LoadState.Error
+
                     loadState.mediator?.append is LoadState.Error -> loadState.mediator?.append as LoadState.Error
+
                     loadState.mediator?.refresh is LoadState.Error -> loadState.mediator?.refresh as LoadState.Error
 
                     else -> null
