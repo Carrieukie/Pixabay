@@ -10,7 +10,7 @@ import com.karis.adalabs_pixabayapi.data.network.responses.ImagesResponse
 interface ImagesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMultipleImages(list: List<ImagesResponse>)
+    suspend fun insertMultipleImages(list: List<HitsItem>)
 
     @Query("SELECT * FROM images_table")
     fun getImages(): PagingSource<Int, HitsItem>
