@@ -14,8 +14,8 @@ interface ImagesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMultipleImages(list: List<HitsItem>)
 
-    @Query("SELECT * FROM images_table")
-    fun getImages(): PagingSource<Int, HitsItem>
+    @Query("SELECT * FROM images_table WHERE tags like '%' || :searchQuery || '%'")
+    fun getImages(searchQuery : String): PagingSource<Int, HitsItem>
 
     @Query("DELETE FROM images_table")
     suspend fun clearRepos()

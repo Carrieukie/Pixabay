@@ -16,10 +16,11 @@ class ImagesRepository @Inject constructor(
     private val db: AppDatabase
 ) {
 
-    private val pagingSourceFactory = { db.imagesDao.getImages() }
-
     @ExperimentalPagingApi
     fun getImages(searchQuery : String): Flow<PagingData<HitsItem>> {
+
+        val pagingSourceFactory = { db.imagesDao.getImages(searchQuery) }
+
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,

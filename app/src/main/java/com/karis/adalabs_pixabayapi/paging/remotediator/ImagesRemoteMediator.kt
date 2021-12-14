@@ -16,7 +16,7 @@ import java.io.IOException
 
 @ExperimentalPagingApi
 class ImagesRemoteMediator(
-    private val service: ImagesApi,
+    private val imagesApi: ImagesApi,
     private val db: AppDatabase,
     private val searchQuery: String
 ) : RemoteMediator<Int, HitsItem>() {
@@ -44,10 +44,9 @@ class ImagesRemoteMediator(
 
             val page: Int = key?.nextKey ?: STARTING_PAGE_INDEX
 
-            val apiResponse = service.getImages(per_page = state.config.pageSize, page = page, searchQuery = searchQuery)
+            val apiResponse = imagesApi.getImages(per_page = state.config.pageSize, page = page, searchQuery = searchQuery)
 
             val imagesList = apiResponse.hits
-
 
             db.withTransaction {
                 val nextKey = page + 1
