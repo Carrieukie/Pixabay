@@ -1,4 +1,4 @@
-package com.karis.adalabs_pixabayapi.ui.adapter
+package com.karis.adalabs_pixabayapi.ui.fragments.homefragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

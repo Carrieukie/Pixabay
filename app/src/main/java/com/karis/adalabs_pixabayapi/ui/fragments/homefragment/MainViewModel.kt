@@ -1,4 +1,4 @@
-package com.karis.adalabs_pixabayapi.ui
+package com.karis.adalabs_pixabayapi.ui.fragments.homefragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
