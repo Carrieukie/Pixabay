@@ -2,6 +2,7 @@ package com.karis.adalabs_pixabayapi.data.network.responses
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -83,6 +84,7 @@ data class HitsItem(
     val pageURL: String? = null,
 
     @field:SerializedName("id")
+    @PrimaryKey
     val id: Int? = null,
 
     @field:SerializedName("imageSize")

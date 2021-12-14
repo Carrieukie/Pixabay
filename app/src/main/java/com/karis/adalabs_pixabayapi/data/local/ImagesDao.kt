@@ -1,12 +1,14 @@
 package com.karis.adalabs_pixabayapi.data.local
 
 import androidx.paging.PagingSource
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.data.network.responses.ImagesResponse
 
+@Dao
 interface ImagesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
