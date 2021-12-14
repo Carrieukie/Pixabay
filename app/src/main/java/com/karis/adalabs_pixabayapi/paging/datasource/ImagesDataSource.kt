@@ -17,11 +17,12 @@ class ImagesDataSource(private val imagesApi: ImagesApi) : PagingSource<Int, Hit
 
         return try {
             val response = imagesApi.getImages(params.loadSize, page)
+
             val images = response.hits
             LoadResult.Page(
                 data = images,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                nextKey = if (response.meta.next_page == null) null else page + 1
+                nextKey = if (images.isNotEmpty()) page + 1 else null
             )
 
         } catch (exception: IOException) {

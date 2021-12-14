@@ -46,8 +46,6 @@ class ImagesRemoteMediator(
 
             val imagesList = apiResponse.hits
 
-            val endOfPaginationReached =
-                apiResponse.meta.next_page == null || apiResponse.meta.current_page == apiResponse.meta.total_pages
 
             db.withTransaction {
                 val nextKey = page + 1
@@ -56,12 +54,13 @@ class ImagesRemoteMediator(
                     RemoteKeys(
                         0,
                         nextKey = nextKey,
-                        isEndReached = endOfPaginationReached
+                        isEndReached = false
                     )
                 )
                 db.imagesDao.insertMultipleImages(imagesList)
             }
-            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
+            return MediatorResult.Success(endOfPaginationReached = false)
+
         } catch (exception: IOException) {
             return MediatorResult.Error(exception)
         } catch (exception: HttpException) {
