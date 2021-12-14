@@ -1,5 +1,6 @@
 package com.karis.adalabs_pixabayapi.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -10,7 +11,7 @@ import com.karis.adalabs_pixabayapi.commons.loadImage
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.databinding.AdapterItemBinding
 
-class ImagesAdapter (private val clicked: (String) -> Unit) :
+class ImagesAdapter(private val clicked: (String) -> Unit) :
     PagingDataAdapter<HitsItem, ImagesAdapter.PlayersViewHolder>(
         ImagesDiffCallback()
     ) {
@@ -37,11 +38,16 @@ class ImagesAdapter (private val clicked: (String) -> Unit) :
         private val binding: AdapterItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(data: HitsItem?) {
 
-            binding.imageView.loadImage(
-                data?.previewURL
-            )
+            binding.apply {
+
+                imageViewImage.loadImage(
+                    data?.largeImageURL
+                )
+                textViewImageUser.text = "By ${data?.user}"
+            }
 
         }
     }

@@ -9,9 +9,7 @@ fun ImageView.loadImage(url: String?) {
     url?.let {
         Glide.with(context)
             .load(url)
-            .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .dontAnimate()
             .into(this)
     }
 }
