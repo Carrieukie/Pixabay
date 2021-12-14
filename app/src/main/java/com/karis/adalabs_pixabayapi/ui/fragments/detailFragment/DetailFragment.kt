@@ -38,19 +38,19 @@ class DetailFragment : Fragment() {
             imageViewImage.loadImage(imageItem.largeImageURL)
             //bind tags
             textViewTags.text = "Tags : ${imageItem.tags}"
-            //Bind Views
+            //Bind number of Views
             textViewNumViews.text = "${imageItem.views?.shortenInt()} views"
-            //Bind likes
+            //Bind number of likes
             textViewNumlikes.text = "${imageItem.likes?.shortenInt()} likes"
-            //Bind downloads
+            //Bind number of downloads
             textViewNumdownloads.text = "${imageItem.downloads?.shortenInt()} downloads"
-            //Bind Comments
+            //Bind number of Comments
             textViewNumcomments.text = "${imageItem.comments?.shortenInt()} comments"
-            //Bind User image
+            //Bind User profile image
             imageViewImageUser.loadCircularImage(imageItem.userImageURL)
-            //Bind Username
+            //Bind image owner Username
             textViewImageUser.text = "By ${imageItem.user}"
-            //bind page Url
+            //bind page Url link
             textViewPageurl.text = "Page Url: ${imageItem.pageURL}"
         }
 
