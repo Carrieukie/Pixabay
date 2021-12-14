@@ -55,7 +55,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif"
             android:text="TextView"
-            android:textStyle="italic"
+            android:textStyle="bold|italic"
             app:layout_constraintStart_toStartOf="@+id/cardView"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -210,6 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
+                    android:autoLink="web"
                     tools:text="page Url : https://pixabay.com/en/blossom-bloom-flower-195893/"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

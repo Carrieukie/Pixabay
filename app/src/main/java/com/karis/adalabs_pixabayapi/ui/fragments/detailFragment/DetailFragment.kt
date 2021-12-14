@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.karis.adalabs_pixabayapi.commons.loadCircularImage
 import com.karis.adalabs_pixabayapi.commons.loadImage
+import com.karis.adalabs_pixabayapi.commons.shortenInt
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,15 +39,17 @@ class DetailFragment : Fragment() {
             //bind tags
             textViewTags.text = "Tags : ${imageItem.tags}"
             //Bind Views
-            textViewNumViews.text = "${imageItem.views} views"
+            textViewNumViews.text = "${imageItem.views?.shortenInt()} views"
             //Bind likes
-            textViewNumlikes.text = "${imageItem.likes} likes"
+            textViewNumlikes.text = "${imageItem.likes?.shortenInt()} likes"
             //Bind downloads
-            textViewNumdownloads.text = "${imageItem.downloads} downloads"
+            textViewNumdownloads.text = "${imageItem.downloads?.shortenInt()} downloads"
             //Bind Comments
-            textViewNumcomments.text = "${imageItem.comments} comments"
+            textViewNumcomments.text = "${imageItem.comments?.shortenInt()} comments"
             //Bind User image
-            imageViewImageUser.loadImage(imageItem.userImageURL)
+            imageViewImageUser.loadCircularImage(imageItem.userImageURL)
+            //Bind Username
+            textViewImageUser.text = "By ${imageItem.user}"
             //bind page Url
             textViewPageurl.text = "Page Url: ${imageItem.pageURL}"
         }
