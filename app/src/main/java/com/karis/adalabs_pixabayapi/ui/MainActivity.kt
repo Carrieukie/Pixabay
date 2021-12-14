@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
-            viewModel.searchPlayers()
+            viewModel.searchImages("Dog")
                 .collectLatest {
                     adapter.submitData(it)
                 }

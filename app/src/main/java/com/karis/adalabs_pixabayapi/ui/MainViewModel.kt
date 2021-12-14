@@ -18,9 +18,9 @@ class MainViewModel @Inject constructor(
     private var currentResult: Flow<PagingData<HitsItem>>? = null
 
     @ExperimentalPagingApi
-    fun searchPlayers(): Flow<PagingData<HitsItem>> {
+    fun searchImages(searchQuery : String): Flow<PagingData<HitsItem>> {
         val newResult: Flow<PagingData<HitsItem>> =
-            repository.getImages().cachedIn(viewModelScope)
+            repository.getImages(searchQuery).cachedIn(viewModelScope)
         currentResult = newResult
         return newResult
     }

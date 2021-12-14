@@ -19,7 +19,7 @@ class ImagesRepository @Inject constructor(
     private val pagingSourceFactory = { db.imagesDao.getImages() }
 
     @ExperimentalPagingApi
-    fun getImages(): Flow<PagingData<HitsItem>> {
+    fun getImages(searchQuery : String): Flow<PagingData<HitsItem>> {
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
@@ -27,10 +27,11 @@ class ImagesRepository @Inject constructor(
             ),
             remoteMediator = ImagesRemoteMediator(
                 imagesApi,
-                db
+                db,
+                searchQuery
             ),
             pagingSourceFactory = pagingSourceFactory
-        ).flow //can also return livedata
+        ).flow
     }
 
     companion object {

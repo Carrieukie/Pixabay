@@ -17,7 +17,8 @@ import java.io.IOException
 @ExperimentalPagingApi
 class ImagesRemoteMediator(
     private val service: ImagesApi,
-    private val db: AppDatabase
+    private val db: AppDatabase,
+    private val searchQuery: String
 ) : RemoteMediator<Int, HitsItem>() {
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, HitsItem>): MediatorResult {
@@ -42,7 +43,8 @@ class ImagesRemoteMediator(
             }
 
             val page: Int = key?.nextKey ?: STARTING_PAGE_INDEX
-            val apiResponse = service.getImages(state.config.pageSize, page)
+
+            val apiResponse = service.getImages(per_page = state.config.pageSize, page = page, searchQuery = searchQuery)
 
             val imagesList = apiResponse.hits
 
