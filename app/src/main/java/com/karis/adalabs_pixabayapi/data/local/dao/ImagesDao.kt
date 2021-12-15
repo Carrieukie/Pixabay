@@ -1,5 +1,6 @@
 package com.karis.adalabs_pixabayapi.data.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
@@ -15,6 +16,9 @@ interface ImagesDao {
 
     @Query("SELECT * FROM images_table WHERE tags like '%' || :searchQuery || '%'")
     fun getImages(searchQuery : String): PagingSource<Int, HitsItem>
+
+    @Query("SELECT * FROM images_table")
+    fun observeAllImagesItems() : LiveData<List<HitsItem>>
 
     @Query("DELETE FROM images_table")
     suspend fun clearRepos()
