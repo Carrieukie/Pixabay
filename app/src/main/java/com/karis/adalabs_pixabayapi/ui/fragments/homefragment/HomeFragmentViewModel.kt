@@ -1,5 +1,7 @@
 package com.karis.adalabs_pixabayapi.ui.fragments.homefragment
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
@@ -16,12 +18,16 @@ class HomeFragmentViewModel @Inject constructor(
     private val repository: ImagesRepository
 ) : ViewModel() {
 
-    private var currentResult: Flow<PagingData<HitsItem>>? = null
+    private val _searchQuery = MutableLiveData("Dog");
+    val search : LiveData<String> = _searchQuery
+
+    fun setSearchQuery(query : String){
+        _searchQuery.value = query
+    }
 
     @ExperimentalPagingApi
-    fun searchImages(searchQuery : String ): Flow<PagingData<HitsItem>> {
+    fun searchImages(searchQuery : String): Flow<PagingData<HitsItem>> {
         val newResult: Flow<PagingData<HitsItem>> = repository.getImages(searchQuery).cachedIn(viewModelScope)
-        currentResult = newResult
         return newResult
     }
 

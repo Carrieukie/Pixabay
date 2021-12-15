@@ -16,21 +16,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.http.Query
 
 @AndroidEntryPoint
+@ExperimentalPagingApi
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeFragmentViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private val adapter =
         HomeFragmentImagesAdapter { imageItem: HitsItem -> imageclicked(imageItem) }
-    private var searchJob: Job? = null
 
-    @ExperimentalPagingApi
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +41,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @ExperimentalPagingApi
     private fun initUi() {
         binding.apply {
             swipeRefreshLayout.setOnRefreshListener {
@@ -52,7 +49,11 @@ class HomeFragment : Fragment() {
             searcView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 android.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    query?.let { startSearchJob(it) }
+                    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+                        if (query != null) {
+                            viewModel.setSearchQuery(query)
+                        }
+                    }
                     return true
                 }
 
@@ -65,18 +66,17 @@ class HomeFragment : Fragment() {
     }
 
     @ExperimentalPagingApi
-    private fun startSearchJob(query: String = "dog") {
+    private fun startSearchJob() {
 
-        // cancel previous running jobs
-        searchJob?.cancel()
+        viewModel.search.observe(viewLifecycleOwner, {searchQuery ->
+            lifecycleScope.launch {
+                viewModel.searchImages(searchQuery)
+                    .collectLatest {
+                        adapter.submitData(it)
+                    }
+            }
 
-        searchJob = lifecycleScope.launch {
-            viewModel.searchImages(query)
-                .collectLatest {
-                    adapter.submitData(it)
-                }
-        }
-
+        })
     }
 
     private fun imageclicked(imageItem: HitsItem) {

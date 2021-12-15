@@ -10,7 +10,9 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/homeFragment_to_Fragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/homeFragment" />
         <argument
             android:name="imageItem"
             app:argType="com.karis.adalabs_pixabayapi.data.network.responses.HitsItem" />
