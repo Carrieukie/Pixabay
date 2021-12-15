@@ -1,4 +1,4 @@
-package com.karis.adalabs_pixabayapi.commons
+package com.karis.adalabs_pixabayapitest
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

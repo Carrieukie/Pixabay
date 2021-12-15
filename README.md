@@ -1,4 +1,4 @@
-# AdaLabs-PixabayAPI Android Take Home Assignment
+AdaLabs-PixabayAPI Android Take Home Assignment
 ==============
 
 Problem definition
@@ -36,4 +36,6 @@ Requirements
 
 * Architecture
     * MVVM - Model View View Model
-`
+    
+* CI/CD
+    * Github Actions

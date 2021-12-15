@@ -1,4 +1,4 @@
-package com.karis.adalabs_pixabayapi
+package com.karis.adalabs_pixabayapitest
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

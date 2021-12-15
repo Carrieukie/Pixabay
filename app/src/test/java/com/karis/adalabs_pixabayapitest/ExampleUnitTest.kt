@@ -1,4 +1,4 @@
-package com.karis.adalabs_pixabayapi
+package com.karis.adalabs_pixabayapitest
 
 import org.junit.Test
 
