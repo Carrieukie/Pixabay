@@ -35,7 +35,6 @@ jobs:
           ${{ runner.os }}-gems-
   apk:
     name: Generate APK
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
