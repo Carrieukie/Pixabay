@@ -1,11 +1,11 @@
-package dev.ronnie.allplayers.data.remotediator
+package com.karis.adalabs_pixabayapi.paging.remotediator
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.karis.adalabs_pixabayapi.data.local.AppDatabase
+import com.karis.adalabs_pixabayapi.data.local.database.AppDatabase
 import com.karis.adalabs_pixabayapi.data.network.api.ImagesApi
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.paging.remotekeys.RemoteKeys
@@ -21,7 +21,7 @@ class ImagesRemoteMediator(
     private val searchQuery: String
 ) : RemoteMediator<Int, HitsItem>() {
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, HitsItem>): MediatorResult {
+        override suspend fun load(loadType: LoadType, state: PagingState<Int, HitsItem>): MediatorResult {
 
         val key = when (loadType) {
 

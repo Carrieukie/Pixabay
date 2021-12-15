@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,13 +19,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import retrofit2.http.Query
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: HomeFragmentViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
-    private val adapter = HomeFragmentImagesAdapter { imageItem: HitsItem -> imageclicked(imageItem) }
+    private val adapter =
+        HomeFragmentImagesAdapter { imageItem: HitsItem -> imageclicked(imageItem) }
     private var searchJob: Job? = null
 
     @ExperimentalPagingApi
@@ -36,18 +39,39 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setUpAdapter()
         startSearchJob()
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            adapter.refresh()
-        }
+        initUi()
         return binding.root
     }
 
     @ExperimentalPagingApi
-    private fun startSearchJob() {
+    private fun initUi() {
+        binding.apply {
+            swipeRefreshLayout.setOnRefreshListener {
+                adapter.refresh()
+            }
+            searcView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                android.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let { startSearchJob(it) }
+                    return true
+                }
 
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+
+            })
+        }
+    }
+
+    @ExperimentalPagingApi
+    private fun startSearchJob(query: String = "dog") {
+
+        // cancel previous running jobs
         searchJob?.cancel()
+
         searchJob = lifecycleScope.launch {
-            viewModel.searchImages("Dog")
+            viewModel.searchImages(query)
                 .collectLatest {
                     adapter.submitData(it)
                 }
@@ -61,15 +85,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
+        binding.apply {
 
-        binding.allProductRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
+            allProductRecyclerView.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                setHasFixedSize(true)
+            }
+
+            allProductRecyclerView.adapter = adapter.withLoadStateFooter(
+                footer = HomeFragmentImagesLoadingAdapter { retry() }
+            )
+
         }
 
-        binding.allProductRecyclerView.adapter = adapter.withLoadStateFooter(
-            footer = HomeFragmentImagesLoadingAdapter { retry() }
-        )
 
         adapter.addLoadStateListener { loadState ->
 

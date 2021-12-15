@@ -2,8 +2,8 @@ package com.karis.adalabs_pixabayapi.di
 
 import android.app.Application
 import androidx.room.Room
-import com.karis.adalabs_pixabayapi.data.local.AppDatabase
-import com.karis.adalabs_pixabayapi.data.local.ImagesDao
+import com.karis.adalabs_pixabayapi.data.local.dao.ImagesDao
+import com.karis.adalabs_pixabayapi.data.local.database.AppDatabase
 import com.karis.adalabs_pixabayapi.paging.RemoteKeysDao
 import dagger.Module
 import dagger.Provides

@@ -12,15 +12,15 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HomeFragmentViewModel @Inject constructor(
     private val repository: ImagesRepository
 ) : ViewModel() {
+
     private var currentResult: Flow<PagingData<HitsItem>>? = null
 
     @ExperimentalPagingApi
-    fun searchImages(searchQuery : String): Flow<PagingData<HitsItem>> {
-        val newResult: Flow<PagingData<HitsItem>> =
-            repository.getImages(searchQuery).cachedIn(viewModelScope)
+    fun searchImages(searchQuery : String ): Flow<PagingData<HitsItem>> {
+        val newResult: Flow<PagingData<HitsItem>> = repository.getImages(searchQuery).cachedIn(viewModelScope)
         currentResult = newResult
         return newResult
     }

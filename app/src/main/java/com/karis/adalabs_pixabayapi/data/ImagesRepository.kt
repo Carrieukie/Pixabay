@@ -4,10 +4,10 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.karis.adalabs_pixabayapi.data.local.AppDatabase
+import com.karis.adalabs_pixabayapi.data.local.database.AppDatabase
 import com.karis.adalabs_pixabayapi.data.network.api.ImagesApi
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
-import dev.ronnie.allplayers.data.remotediator.ImagesRemoteMediator
+import com.karis.adalabs_pixabayapi.paging.remotediator.ImagesRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -17,7 +17,7 @@ class ImagesRepository @Inject constructor(
 ) {
 
     @ExperimentalPagingApi
-    fun getImages(searchQuery : String): Flow<PagingData<HitsItem>> {
+    fun getImages(searchQuery: String): Flow<PagingData<HitsItem>> {
 
         val pagingSourceFactory = { db.imagesDao.getImages(searchQuery) }
 

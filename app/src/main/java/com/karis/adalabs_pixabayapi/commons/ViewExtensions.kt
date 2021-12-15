@@ -7,7 +7,7 @@ import com.karis.adalabs_pixabayapi.R
 import kotlin.math.ln
 import kotlin.math.pow
 
-
+//load a regular image using glide
 fun ImageView.loadImage(url: String?) {
     url?.let {
         Glide.with(context)
@@ -19,6 +19,7 @@ fun ImageView.loadImage(url: String?) {
     }
 }
 
+//load a circular image using glide
 fun ImageView.loadCircularImage(url: String?) {
     url?.let {
         Glide.with(context)
@@ -31,6 +32,7 @@ fun ImageView.loadCircularImage(url: String?) {
     }
 }
 
+//get a shortened integer eg 1K, 1M,3G e.t.c
 fun Int.shortenInt(): String {
     if (this < 1000) return this.toString()
     val exp = (ln(this.toDouble()) / ln(1000.0)).toInt()

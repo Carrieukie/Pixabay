@@ -1,7 +1,8 @@
-package com.karis.adalabs_pixabayapi.data.local
+package com.karis.adalabs_pixabayapi.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.karis.adalabs_pixabayapi.data.local.dao.ImagesDao
 import com.karis.adalabs_pixabayapi.data.network.responses.HitsItem
 import com.karis.adalabs_pixabayapi.paging.RemoteKeysDao
 import com.karis.adalabs_pixabayapi.paging.remotekeys.RemoteKeys
