@@ -68,15 +68,14 @@ class HomeFragment : Fragment() {
     @ExperimentalPagingApi
     private fun startSearchJob() {
 
-        viewModel.search.observe(viewLifecycleOwner, {searchQuery ->
-            lifecycleScope.launch {
-                viewModel.searchImages(searchQuery)
-                    .collectLatest {
-                        adapter.submitData(it)
-                    }
+        lifecycleScope.launch {
+            viewModel.search.collectLatest { searchQuery ->
+                viewModel.searchImages(searchQuery).collectLatest {
+                    adapter.submitData(it)
+                }
             }
 
-        })
+        }
     }
 
     private fun imageclicked(imageItem: HitsItem) {

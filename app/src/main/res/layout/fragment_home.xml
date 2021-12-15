@@ -24,7 +24,8 @@
                 <SearchView
                     android:id="@+id/searcView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:queryHint="@string/search_string" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
