@@ -91,6 +91,9 @@ The App has tests on Fragments as well as unit tests under the Android Test pack
    * When the device is offline.
    
         <img src="https://github.com/Carrieukie/AdaLabs-PixabayAPI/blob/dev/assets/offline.gif" width="320"/>
-        
 
+
+
+
+# I hope you loved this 
     
