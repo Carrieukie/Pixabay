@@ -15,7 +15,7 @@ Requirements
 * When the app opens let the app search for pictures of dogs as default
 * The android application SHOULD be able to work offline.
 
-# APK
+### APK
 
 Find an apk that caters for the above functional requirements on the [assets folder](https://github.com/Carrieukie/AdaLabs-PixabayAPI/tree/dev/assets).
 
