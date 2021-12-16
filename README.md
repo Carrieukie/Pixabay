@@ -15,6 +15,14 @@ Requirements
 * When the app opens let the app search for pictures of dogs as default
 * The android application SHOULD be able to work offline.
 
+# APK
+
+Find an apk that caters for the above functional requirements on the [assets folder](https://github.com/Carrieukie/AdaLabs-PixabayAPI/tree/dev/assets).
+
+Min Api Level: 21
+
+Build System : [Gradle](https://gradle.org/)
+
 
 ### Tech-stack
 
@@ -61,7 +69,9 @@ Requirements
       
       The primary Paging library component in the UI layer is PagingDataAdapter, a RecyclerView adapter that handles paginated data.This class is a convenience wrapper around AsyncPagingDataDiffer that implements common default behavior for item counting, and listening to update events.To present a Pager, use collectLatest to observe Pager.flow and call submitData whenever a new PagingData is emitted.PagingDataAdapter listens to internal PagingData loading events as pages are loaded, and uses DiffUtil on a background thread to compute fine grained updates as updated content in the form of new PagingData objects are received.
 
+## Testing
 
+The App has tests on Fragments as well as unit tests under the Android Test packages in respective modules.
 
 ## Screenshots
 
